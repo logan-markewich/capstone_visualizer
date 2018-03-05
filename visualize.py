@@ -6,9 +6,9 @@ import time
 
 import numpy as np
 
-# for now this will init one trace object(item to track)
+# for now this will init two trace objects(items to track)
 # could be expanded using for loops
-# returns stream link, use .open() after this
+# returns stream link array, use .open() after this
 def initGraph():
     # get list of all your stream ids
     stream_ids = tls.get_credentials_file()['stream_ids']
