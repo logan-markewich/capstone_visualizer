@@ -1,5 +1,7 @@
 # capstone_visualizer
 
+******Before running anything, make sure plotly and numpy is installed, and that you have set up your plotly credentials and api keys correctly
+
 Alright, things we need (or possibly need):
 - A way to organize what rssi belongs to which tag id
 - A function that fetches data from all tags?
