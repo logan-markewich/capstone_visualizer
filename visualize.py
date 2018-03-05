@@ -42,7 +42,36 @@ def initGraph():
   return py.Stream(stream_id)
 
 def main():
+  s = initGraph()
+  
+  time.sleep(5)
+  
+  x = -1
+  y = -1
+  forward = True
+  
+  while True:
+    if forward:
+      x += 0.25
+      y += 0.5
+      
+      s.write(dict(x=x,y=y)
+      
+      time.sleep(1)
+      if y > 6:
+              forward = False
+    else:
+      x -= 0.25
+      y -= 0.5
+      
+      s.write(dict(x=x,y=y)
+      
+      time.sleep(1)
+      if y <= -1:
+              forward = True
 
-if '__name__' ==
+
+if __name__ == "__main__":
+  main()
   
   
