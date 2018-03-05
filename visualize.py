@@ -28,12 +28,71 @@ def initGraph():
     stream=stream_1         # (!) embed stream id, 1 per trace
   )
 
-  data = go.Data([trace1])
+  data = [trace1]
   # Add title to layout object
-  layout = go.Layout(title='Sample example mample')
+  layout = {
+    'title': {
+      'Sample example mample'
+    },
+    'xaxis': {
+      'range': [0,10]
+    },
+    'yaxis': {
+      'range': [0,10]
+    },
+    'shapes': [
+        {
+            'type': 'line',
+            'x0': 0,
+            'y0': 0,
+            'x1': 10,
+            'y1': 0,
+            'line': {
+                'color': 'rgb(55, 128, 191)',
+                'width': 3,
+            },
+        },
+        {
+            'type': 'line',
+            'x0': 0,
+            'y0': 0,
+            'x1': 0,
+            'y1': 10,
+            'line': {
+                'color': 'rgb(55, 128, 191)',
+                'width': 3,
+            },
+        },
+        {
+            'type': 'line',
+            'x0': 10,
+            'y0': 0,
+            'x1': 10,
+            'y1': 10,
+            'line': {
+                'color': 'rgb(55, 128, 191)',
+                'width': 3,
+            },
+        },
+        {
+          'type': 'line',
+            'x0': 0,
+            'y0': 10,
+            'x1': 10,
+            'y1': 10,
+            'line': {
+                'color': 'rgb(55, 128, 191)',
+                'width': 3,
+            },
+        },
+    ]
+  }
 
   # Make a figure object
-  fig = go.Figure(data=data, layout=layout)
+  fig = {
+    'data': data,
+    'layout': layot
+  }
 
   # Send fig to Plotly, initialize streaming plot, open new tab
   py.plot(fig, filename='python-streaming')
