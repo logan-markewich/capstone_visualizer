@@ -24,6 +24,7 @@ The visualize.py file will now generate a plot with two traces, that move random
 - Change visualizer to read in from a stock text file(csv? one fore each tag?)
 - Create function to randomly populate a text file (text file should be gaurded by semaphore, we will need threading)
 - Work on parsing response from ESP's and figuring out the temp storage for those values before they get deposited into text file (some kind of queue/dictionary ??)
+- use RSSI values to get a function/trendline that works
 
 # Far off goals
 - format the plot to look nicer, have extra titles and whatnot
