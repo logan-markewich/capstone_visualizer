@@ -1,0 +1,14 @@
+>>> data = urlopen('http://192.168.1.166/getTriang')
+>>> print(data.read().decode('utf-8'))
+<!DOCTYPE HTML>
+<html>
+<p>1234567</p>
+<p>43225: ESPap2=-33 </p>
+<p>43227: ESPap2=-35 </p>
+<p>43229: ESPap2=-33 </p>
+<p>43231: ESPap2=-45 </p>
+<p>43234: ESPap2=-34 </p>
+<p>43236: ESPap2=-42 </p>
+</html>
+
+>>> 
