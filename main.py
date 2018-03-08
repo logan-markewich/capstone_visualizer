@@ -10,7 +10,7 @@ def getRssi():
   fileSem.release()
 
 def main():
-  # code here
+  getRssi_t.start()
 
 if __name__ == "__main__":
     main()
