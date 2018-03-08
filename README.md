@@ -16,3 +16,17 @@ Alright, things we need (or possibly need):
 We should probably start with getting a graph streaming with some fake data, then we can figure out how to convert and filter values.
 
 You'll need a plotly account to get the api key and streaming keys.
+
+# Current Status
+The visualize.py file will now generate a plot with two traces, that move randomly, on a plot that has walls drawn on it. The plot is live streamed to the associated plotly account on your computer.
+
+# Next Steps
+- Change visualizer to read in from a stock text file(csv? one fore each tag?)
+- Create function to randomly populate a text file (text file should be gaurded by semaphore, we will need threading)
+- Work on parsing response from ESP's and figuring out the temp storage for those values before they get deposited into text file (some kind of queue/dictionary ??)
+
+# Far off goals
+- format the plot to look nicer, have extra titles and whatnot
+- make plotted points large enough to account for error in location
+
+
