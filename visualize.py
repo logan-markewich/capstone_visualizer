@@ -59,7 +59,7 @@ def initGraph():
             'type': 'line',
             'x0': 0,
             'y0': 0,
-            'x1': 10,
+            'x1': 300,
             'y1': 0,
             'line': {
                 'color': 'rgb(55, 128, 191)',
@@ -71,7 +71,7 @@ def initGraph():
             'x0': 0,
             'y0': 0,
             'x1': 0,
-            'y1': 10,
+            'y1': 605,
             'line': {
                 'color': 'rgb(55, 128, 191)',
                 'width': 3,
@@ -79,10 +79,10 @@ def initGraph():
         },
         {
             'type': 'line',
-            'x0': 10,
+            'x0': 300,
             'y0': 0,
-            'x1': 10,
-            'y1': 10,
+            'x1': 300,
+            'y1': 605,
             'line': {
                 'color': 'rgb(55, 128, 191)',
                 'width': 3,
@@ -91,9 +91,9 @@ def initGraph():
         {
           'type': 'line',
             'x0': 0,
-            'y0': 10,
-            'x1': 10,
-            'y1': 10,
+            'y0': 605,
+            'x1': 300,
+            'y1': 605,
             'line': {
                 'color': 'rgb(55, 128, 191)',
                 'width': 3,
@@ -134,13 +134,13 @@ def main():
 
     while True:
         if forward:
-            x += np.random.uniform(0.0,1.0)
-            if x >= 10:
-                x = 10
+            x += np.random.uniform(0.0,75.0)
+            if x >= 300:
+                x = 300
 
-            y += np.random.uniform(0.0,1.0)
-            if y >= 10:
-                y = 10
+            y += np.random.uniform(0.0,75.0)
+            if y >= 605:
+                y = 605
 
             s_1.write(dict(x=x,y=y))
             s_2.write(dict(x=y,y=x))
@@ -149,11 +149,11 @@ def main():
             if y >= 10 or x >= 10:
                 forward = False
         else:
-            x -= np.random.uniform(0.0,1.0)
+            x -= np.random.uniform(0.0,75.0)
             if x <= 0:
                 x = 0
 
-            y -= np.random.uniform(0.0,1.0)
+            y -= np.random.uniform(0.0,75.0)
             if y <= 0:
                 y = 0
 
