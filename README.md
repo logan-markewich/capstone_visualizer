@@ -5,7 +5,7 @@
 Alright, things we need (or possibly need):
 - A way to organize what rssi belongs to which tag id
 - A function that fetches data from all tags?
-    This is pretty much done you just need to pass the function the ip of the tag you want to ping
+    ** This is pretty much done you just need to pass the function the ip of the tag you want to ping
 - A function to convert RSSI -> meters/cm/idk
 - A function to write the information to a file or something? Need to think of how to store the data.. maybe each tag gets a csv
 - A function to go through the newest data and filter out data where a pigs appears to move way to far way to fast, or is out of the room
