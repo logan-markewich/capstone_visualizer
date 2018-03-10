@@ -1,4 +1,5 @@
 from urllib.request import urlopen
+import csv
 
 #Lane Larochelle
 #March 8th 2018 
@@ -25,8 +26,8 @@ class TagInfo(object):
     def addRec(self, rawloca):
         self.record.append(rawloca)
 
-    def clearRec():
-        del(record[:])
+    def clearRec(self):
+        del(self.record[:])
 
     def printInfo(self):
         print("ID: " + self.ID)
@@ -72,11 +73,30 @@ def pingTag(ip):
             tag.addRec(RawLocation(timestamp,rssi0,rssi1,rssi2))
 
     return tag
-		
+
+def csv_handler(tag):
+	with open (tag.ID+".csv",'a') as filedata:
+		organized = [('Time', None), ('ESPap0', None), ('ESPap1', None), ('ESPap2', None)]
+		writer = csv.writer(filedata, delimiter=',')
+		for entry in tag.record:
+			data=(str(entry.timestamp), str(entry.ESPap0), str(entry.ESPap1), str(entry.ESPap2))               
+			writer.writerow(data) 
+	tag.clearRec()
 
 def main():
-    tag = pingTag('192.168.1.166')
-    tag.printInfo()
+    #tag = pingTag('192.168.1.166')
+    #tag.printInfo()
+    
+    #tag=TagInfo("168.125.12.34")
+    #tag.ID = ("168.125.12.34")
+    #print(tag.ID)
+    #tag.addRec(RawLocation(str(401012),str(-23),str(-67),str(-56)))
+    #tag.addRec(RawLocation(str(401015),str(-26),str(-68),str(-57)))
+    #tag.printInfo()
+    #csv_handler(tag)
+    #print('nothing should print after this except id')
+    #tag.printInfo()
+
 
 if __name__ == '__main__':
     main()
