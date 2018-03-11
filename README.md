@@ -3,13 +3,13 @@
 ******Before running anything, make sure plotly and numpy is installed, and that you have set up your plotly credentials and api keys correctly
 
 Alright, things we need (or possibly need):
-- A way to organize what rssi belongs to which tag id
-- A function that fetches data from all tags?
+- A way to organize what rssi belongs to which tag id(DONE!)
+- A function that fetches data from all tags?(DONE!)
     ** This is pretty much done you just need to pass the function the ip of the tag you want to ping
 - A function to convert RSSI -> meters/cm/idk
-- A function to write the information to a file or something? Need to think of how to store the data.. maybe each tag gets a csv
+- A function to write the information to a file or something? Need to think of how to store the data.. maybe each tag gets a csv(DONE!)
 - A function to go through the newest data and filter out data where a pigs appears to move way to far way to fast, or is out of the room
-- A function to stream/update the plotly graph (I would only worry about a single point right now)
+- A function to stream/update the plotly graph (I would only worry about a single point right now)(HALF WAY DONE)
     - As a side note, all graph settings (looks, etc) can be updated in the plotly website
     - Also, we can draw shapes to represent the room we give the presentation in, or a pig pen, right on the graph
     
