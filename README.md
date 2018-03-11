@@ -21,11 +21,14 @@ You'll need a plotly account to get the api key and streaming keys.
 # Current Status
 The visualize.py file will now generate a plot with two traces, that move randomly, on a plot that has walls drawn on it. The plot is live streamed to the associated plotly account on your computer.
 
+Ping n Parse will ping a tag, and get the RSSI values and timestamps from it's buffer. It also has a function that takes everything in the tag objects record and writes it to a csv file, and then clears the tag record for memory svaing.
+
 # Next Steps
 - Change visualizer to read in from a stock text file(csv? one fore each tag?)
 - Create function to randomly populate a text file (text file should be gaurded by semaphore, we will need threading)
-- Work on parsing response from ESP's and figuring out the temp storage for those values before they get deposited into text file (some kind of queue/dictionary ??)
+- Create function to filter a csv file
 - use RSSI values to get a function/trendline that works
+- formulate main.py to get everything working in tandem
 
 # Far off goals
 - format the plot to look nicer, have extra titles and whatnot
