@@ -8,7 +8,7 @@ Alright, things we need (or possibly need):
     ** This is pretty much done you just need to pass the function the ip of the tag you want to ping
 - A function to convert RSSI -> cm
 - A function to write the information to a file or something? Need to think of how to store the data.. maybe each tag gets a csv(DONE!)
-- A function to go through the newest data and filter out data where a pigs appears to move way to far way to fast, or is out of the room
+- A function to go through the newest data and filter out data where a pigs appears to move way to far way to fast, or is out of the room(DONE! but only for out of bounds locations)
 - A function to stream/update the plotly graph (I would only worry about a single point right now)(HALF WAY DONE)
     - As a side note, all graph settings (looks, etc) can be updated in the plotly website
     - Also, we can draw shapes to represent the room we give the presentation in, or a pig pen, right on the graph
@@ -25,8 +25,6 @@ Ping n Parse will ping a tag, and get the RSSI values and timestamps from it's b
 
 # Next Steps
 - Change visualizer to read in from a stock text file(csv? one fore each tag?)
-- Create function to randomly populate a text file (text file should be gaurded by semaphore, we will need threading)
-- Create function to filter a csv file
 - use RSSI values to get a function/trendline that works
 - formulate main.py to get everything working in tandem
 
