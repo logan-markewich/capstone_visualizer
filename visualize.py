@@ -15,17 +15,11 @@ def initGraph():
 
     # Get stream id from stream id list
     stream_id1 = stream_ids[0]
-    stream_id2 = stream_ids[1]
 
     # Make instance of stream id object
     stream_1 = go.Stream(
         token=stream_id1,  # link stream id to 'token' key
         maxpoints=5      # keep a max of 5 pts on screen
-    )
-
-    stream_2 = go.Stream(
-        token=stream_id2,
-        maxpoints=5
     )
 
     # Initialize trace of streaming plot by embedding the unique stream_id
@@ -36,15 +30,7 @@ def initGraph():
         stream=stream_1         # (!) embed stream id, 1 per trace
     )
 
-    # Initialize trace of streaming plot by embedding the unique stream_id
-    trace2 = go.Scatter(
-        x=[],
-        y=[],
-        mode='lines+markers',
-        stream=stream_2         # (!) embed stream id, 1 per trace
-    )
-
-    data = [trace1, trace2]
+    data = [trace1]
     # Add title to layout object
     layout = {
         'title': 'example lample mample',
@@ -113,56 +99,41 @@ def initGraph():
 
     # We will provide the stream link object the same token that's associated with the trace we wish to stream to
     s_1 = py.Stream(stream_id1)
-    s_2 = py.Stream(stream_id2)
 
-    return [s_1, s_2]
+    return s_1
+
+def updatePlot(filename, lastLineNumRead, s):
+    curLine = 0
+    lastTime = -1
+    x = 0
+    y = 0
+    with open(filename, 'r') as f:
+        for line in f:
+            if(line != 'NULL\n')
+                if(curLine >= lastLineNumRead):
+                    line = line.strip('/n')
+                    fields = line.split(',')
+                    if(lastTime != -1):
+                        time.sleep(int(fields[0]) - lastTime)
+
+                    s.write(dict(x=int(fields[1]),y=int(fields[2])))
+                    lastTime = int(fields[0])
+
+                curLine += 1
+        break
+    f.close()
+    return curLine
 
 def main():
-    s = initGraph()
-
-    s_1 = s[0]
-    s_2 = s[1]
+    s_1 = initGraph()
 
     s_1.open()
-    s_2.open()
 
     time.sleep(5)
-
-    x = -1
-    y = -1
-    forward = True
+    lastLineRead = -1
 
     while True:
-        if forward:
-            x += np.random.uniform(0.0,75.0)
-            if x >= 300:
-                x = 300
-
-            y += np.random.uniform(0.0,75.0)
-            if y >= 605:
-                y = 605
-
-            s_1.write(dict(x=x,y=y))
-            s_2.write(dict(x=y,y=x))
-
-            time.sleep(1)
-            if y >= 10 or x >= 10:
-                forward = False
-        else:
-            x -= np.random.uniform(0.0,75.0)
-            if x <= 0:
-                x = 0
-
-            y -= np.random.uniform(0.0,75.0)
-            if y <= 0:
-                y = 0
-
-            s_1.write(dict(x=x,y=y))
-            s_2.write(dict(x=y,y=x))
-
-            time.sleep(1)
-            if y <= 0 or x <= 0:
-                forward = True
+        lastLineRead = updatePlot(1234567_fake.txt, lastLineRead, s_1)
 
 
 if __name__ == "__main__":
