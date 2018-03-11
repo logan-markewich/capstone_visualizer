@@ -1,4 +1,5 @@
 from urllib.request import urlopen
+from time import sleep
 import csv
 
 #Lane Larochelle
@@ -96,6 +97,11 @@ def main():
     #csv_handler(tag)
     #print('nothing should print after this except id')
     #tag.printInfo()
+
+    for i in range(0,10):
+        tag = pingTag('192.168.1.166')
+        csv_handler(tag)
+        sleep(10)
 
 
 if __name__ == '__main__':
