@@ -35,10 +35,10 @@ def initGraph():
     layout = {
         'title': 'example lample mample',
         'xaxis': {
-            'range': [0,10]
+            'range': [0,300]
         },
         'yaxis': {
-            'range': [0,10]
+            'range': [0,605]
         },
         'shapes': [
         {
@@ -109,7 +109,7 @@ def updatePlot(filename, lastLineNumRead, s):
     y = 0
     with open(filename, 'r') as f:
         for line in f:
-            if(line != 'NULL\n')
+            if(line != 'NULL\n'):
                 if(curLine >= lastLineNumRead):
                     line = line.strip('/n')
                     fields = line.split(',')
@@ -120,7 +120,6 @@ def updatePlot(filename, lastLineNumRead, s):
                     lastTime = int(fields[0])
 
                 curLine += 1
-        break
     f.close()
     return curLine
 
@@ -133,8 +132,8 @@ def main():
     lastLineRead = -1
 
     while True:
-        lastLineRead = updatePlot(1234567_fake.txt, lastLineRead, s_1)
+        lastLineRead = updatePlot('1234567_fake.txt', lastLineRead, s_1)
 
 
 if __name__ == "__main__":
-    main()
+	main()
