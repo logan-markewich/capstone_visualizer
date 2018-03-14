@@ -76,7 +76,7 @@ def pingTag(ip):
     return tag
 
 def csv_handler(tag):
-	with open (tag.ID+".csv",'a') as filedata:
+	with open (tag.ID+"_rssi.csv",'a') as filedata:
 		organized = [('Time', None), ('ESPap0', None), ('ESPap1', None), ('ESPap2', None)]
 		writer = csv.writer(filedata, delimiter=',')
 		for entry in tag.record:

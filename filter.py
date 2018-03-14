@@ -37,7 +37,7 @@ def filterVals(filename):
 
 
 def main():
-    filterVals('1234567_fake.txt')
+    filterVals('1234567_val.txt')
 
 
 if __name__ == "__main__":
