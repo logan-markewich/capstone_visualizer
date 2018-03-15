@@ -28,7 +28,7 @@ def filterVals(filename):
     for lineNum in linesToChange:
         data[lineNum] = 'NULL\n'
 
-    with open(filename, 'w') as f:
+    with open(filename + '_filtered.csv', 'w') as f:
         f.writelines(data)
 
     f.close()
