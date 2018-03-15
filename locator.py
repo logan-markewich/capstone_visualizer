@@ -26,43 +26,55 @@ rssis = points[:,1]
 # THIS IS AS FAR AS WIKI SAYS
 
 class trilatBoy():
-	p1=(0,0,0)
-	p2=(0,0,0)
-	p3=(0,0,0)
-	d=0
-	i=0
-	j=0
-	def __init__(self,p1,p2,p3,d,i,j):
-		self.p1=p1
-		self.p2=p2
-		self.p3=p3
-		self.d=d
-		self.i=i
-		self.j=j
+    p1=(0,0,0)
+    p2=(0,0,0)
+    p3=(0,0,0)
+    d=0
+    i=0
+    j=0
+    def __init__(self,p1,p2,p3,d,i,j):
+	self.p1=p1
+        self.p2=p2
+        self.p3=p3
+        self.d=d
+        self.i=i
+        self.j=j
 
-	def clear(self):
-		self.p1=(0,0,0)
-		self.p2=(0,0,0)
-		self.p3=(0,0,0)
-		self.d=0
-		self.i=0
-		self.j=0
+    def clear(self):
+	self.p1=(0,0,0)
+	self.p2=(0,0,0)
+	self.p3=(0,0,0)
+	self.d=0
+	self.i=0
+	self.j=0
+
+cal = [0.2254, -3.964, 24.994, -71.136, 96.131, 23.408]
+
+def convert(rssi):
+    if rssi > 0:
+        return None
+    cal[-1] = cal[-1] + rssi
+    vals = np.roots(cal)
+    while vals[-1].imag != 0:
+        vals = vals[:-1]
+    dist = vals[-1].real
+    return dist
 
 def rssi_to_meter(rssi0, rssi1, rssi2):
-	meter = []
-
-	#use the equation so meter[0] = rssi0 etc, return the whole fucking unit
-
-	return meter
-
+    #use the equation so meter[0] = rssi0 etc, return the whole fucking unit
+    rssi = [rssi0, rssi1, rssi2]
+    meter = []
+    for i in range(3):
+        meter[i] = convert(rssi[i])
+    return meter
 
 def trilatterate(boy, rssis):
-	meter = rssi_to_meter(rssis[0], rssis[1], rssis[2])
-	xpos=((meter[0]^2) - (meter[1]^2)+(boy.d^2))/(2*d)
-	ypos=(((meter[0]^2)-(meter[2]^2)+(boy.i^2)+(boy.j^2))/(2*boy.j))-((boy.i/boy.j)*xpos)
-	zpos1=((meter[0]^2)-(xpos^2)-(ypos^2))^(1/2)
-	zpos2=(((meter[0]^2)-(xpos^2)-(ypos^2))^(1/2))*(-1)
-	### needs a way to select the correct z value from the 2 or we can just discard z as we can assume there are all on the same plane
+    meter = rssi_to_meter(rssis[0], rssis[1], rssis[2])
+    xpos=((meter[0]^2) - (meter[1]^2)+(boy.d^2))/(2*d)
+    ypos=(((meter[0]^2)-(meter[2]^2)+(boy.i^2)+(boy.j^2))/(2*boy.j))-((boy.i/boy.j)*xpos)
+    zpos1=((meter[0]^2)-(xpos^2)-(ypos^2))^(1/2)
+    zpos2=(((meter[0]^2)-(xpos^2)-(ypos^2))^(1/2))*(-1)
+    ### needs a way to select the correct z value from the 2 or we can just discard z as we can assume there are all on the same plane
 
-	return (xpos,ypos)
+    return (xpos,ypos)
 
