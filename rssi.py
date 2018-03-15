@@ -9,10 +9,7 @@ def getXY(rssi0, rssi1, rssi2):
 
 def writeXY(rssi0, rssi1, rssi2, tag):
     xpos, ypos = getXY(rssi0, rssi1, rssi2)
-    with open(tag.ID + "vals.txt", "w") as f:
+    with open(tag.ID + "_vals.csv", "w") as f:
         f.write(tag.timeStamp + "," + xpos + "," + ypos + "\n")
-    
+
     f.close()
-        
-  
-  

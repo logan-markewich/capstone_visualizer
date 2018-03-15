@@ -111,7 +111,7 @@ def updatePlot(filename, lastLineNumRead, s):
         for line in f:
             if(line != 'NULL\n'):
                 if(curLine >= lastLineNumRead):
-                    line = line.strip('/n')
+                    line = line.strip('\n')
                     fields = line.split(',')
                     if(lastTime != -1):
                         time.sleep(int(fields[0]) - lastTime)

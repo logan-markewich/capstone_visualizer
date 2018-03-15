@@ -17,22 +17,22 @@ def filterVals(filename):
                     # get current and last times, to be used in future use for filtering
                     lastTime = curTime
                     curTime = fields[0]
-                
+
                     # checki if out of bounds
                     if(int(fields[1]) > 300 or int(fields[2]) > 605 or int(fields[1]) < 0 or int(fields[2]) < 0):
                         linesToChange.append(lineNum)
 
             lineNum += 1
     f.close()
-    
+
     for lineNum in linesToChange:
         data[lineNum] = 'NULL\n'
 
-    with open(filename + '_filtered.csv', 'w') as f:
+    with open(filename + '_filt.csv', 'w') as f:
         f.writelines(data)
 
     f.close()
-            
+
 
 
 
