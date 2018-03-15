@@ -3,13 +3,16 @@
 # user discretion is advised
 import ping_n_parse
 import visualize
-import locator
+import rssi
 import filter
 
 import threading
 
 # this shows how to create a semaphore and a thread
-fileSem = threading.Semaphore()
+rawSem = threading.Semaphore()
+valSem = threading.Semaphore()
+filtSem = threading.Semaphore()
+
 getRssi_t = threading.Thread(target=getRssi)
 visualize_t = threading.Thread(target=vis)
 locate_t = threading.Thread(target=locate)
@@ -19,9 +22,9 @@ def getRssi():
     while(True):
         sleep(0.25)
         tag = ping_n_parse.pingTag('192.168.0.12')
-        fileSem.acquire()
+        rawSem.acquire()
         ping_n_parse.csv_handler(tag)
-        fileSem.release()
+        rawSem.release()
 
 def locate():
     # this needs to use locater, should probably also write location data to
@@ -29,9 +32,11 @@ def locate():
     # and another file for location vals
     while True:
         sleep(0.30)
-        fileSem.acquire()
-        ping_n_parse.csv_handler(tag)
-        fileSem.release()
+        rawSem.acquire()
+        valSem.acquire()
+        rssi.writeXY(?)
+        valSem.release()
+        rawSem.release()
 
 def vis():
     s_1 = visualize.initGraph()
@@ -42,17 +47,19 @@ def vis():
     lastLineRead = -1
 
     while True:
-        fileSem.acquire()
-        lastLineRead = visualize.updatePlot('1234567_vals.txt', lastLineRead, s_1)    
-        fileSem.release()
+        filtSem.acquire()
+        lastLineRead = visualize.updatePlot('1234567_vals_filt.txt', lastLineRead, s_1)    
+        filtSem.release()
         sleep(0.20)
 
 
 def filthyBoy():
     while True:
-        fileSem.acquire()
+        filtSem.acquire()
+        valSem.acquire()
         filterVals('1234567_vals.txt')
-        fileSem.release()
+        valSem.release()
+        filtSem.release()
         sleep(0.25)
 
 def main():
