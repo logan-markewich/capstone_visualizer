@@ -6,9 +6,11 @@ import visualize
 import rssi
 import filter
 
+import datetime
 import threading
 import os
 from time import sleep
+from urllib.request import urlopen
 
 # this shows how to create a semaphore and a thread
 rawSem = threading.Semaphore()
@@ -64,6 +66,19 @@ def filthyBoy():
         sleep(0.25)
 
 def main():
+  # set the time on the tag
+  time = str(datetime.datetime.now().time()).split(':')
+  secs = int((time[2].split('.'))[0])
+  secs += int(time[0])*60*60
+  secs += int(time[1])*60
+
+  secsStr = str(secs)
+  while(len(secs) < 5):
+      secsStr = "0" + secsStr
+
+  urlopen('http://192.168.0.12/setTime/' + secsStr)
+
+  # start threads
   getRssi_t.start()
   filter_t.start()
   visualize_t.start()
