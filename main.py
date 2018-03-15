@@ -58,6 +58,7 @@ def filthyBoy():
         filtSem.acquire()
         valSem.acquire()
         filterVals('1234567_vals.csv') # it would be nice if this name wasn't hardcoded but oh well
+        os.remove('./1234567_vals.csv')
         valSem.release()
         filtSem.release()
         sleep(0.25)
