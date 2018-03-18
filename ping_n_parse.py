@@ -70,7 +70,7 @@ def pingTag(ip):
                     rssi1 = last[1]
                 elif(last[0] == 'ESPap2'):
                     rssi2 = last[1]
-
+            print("Got rssi's of " + str(rssi0) + " " + str(rssi1) + " " + str(rssi2))
             tag.addRec(RawLocation(timestamp,rssi0,rssi1,rssi2))
 
     return tag

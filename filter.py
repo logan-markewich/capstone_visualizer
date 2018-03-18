@@ -1,11 +1,11 @@
 import fileinput
 
-def filterVals(filename):
+def filterVals(tagID):
     curTime = '-1'
     lastTime = '-1'
     lineNum = 0
     linesToChange = []
-    with open(filename, 'r')  as f:
+    with open(str(tagID) + "_vals.csv", 'r')  as f:
         data = f.readlines()
         for line in data:
             lineStr = line.strip('\n')
@@ -19,7 +19,7 @@ def filterVals(filename):
                     curTime = fields[0]
 
                     # checki if out of bounds
-                    if(int(fields[1]) > 300 or int(fields[2]) > 605 or int(fields[1]) < 0 or int(fields[2]) < 0):
+                    if(int(fields[1]) > 300 or int(fields[2]) > 300 or int(fields[1]) < 0 or int(fields[2]) < 0):
                         linesToChange.append(lineNum)
 
             lineNum += 1
@@ -28,7 +28,7 @@ def filterVals(filename):
     for lineNum in linesToChange:
         data[lineNum] = 'NULL\n'
 
-    with open(filename + '_filt.csv', 'w') as f:
+    with open(tagID + '_vals_filt.csv', 'a') as f:
         f.writelines(data)
 
     f.close()

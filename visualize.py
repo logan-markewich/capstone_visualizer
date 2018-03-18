@@ -19,7 +19,7 @@ def initGraph():
     # Make instance of stream id object
     stream_1 = go.Stream(
         token=stream_id1,  # link stream id to 'token' key
-        maxpoints=5      # keep a max of 5 pts on screen
+        maxpoints=20      # keep a max of 5 pts on screen
     )
 
     # Initialize trace of streaming plot by embedding the unique stream_id
@@ -38,7 +38,7 @@ def initGraph():
             'range': [0,300]
         },
         'yaxis': {
-            'range': [0,605]
+            'range': [0,300]
         },
         'shapes': [
         {
@@ -57,7 +57,7 @@ def initGraph():
             'x0': 0,
             'y0': 0,
             'x1': 0,
-            'y1': 605,
+            'y1': 300,
             'line': {
                 'color': 'rgb(55, 128, 191)',
                 'width': 3,
@@ -68,7 +68,7 @@ def initGraph():
             'x0': 300,
             'y0': 0,
             'x1': 300,
-            'y1': 605,
+            'y1': 300,
             'line': {
                 'color': 'rgb(55, 128, 191)',
                 'width': 3,
@@ -77,9 +77,9 @@ def initGraph():
         {
           'type': 'line',
             'x0': 0,
-            'y0': 605,
+            'y0': 300,
             'x1': 300,
-            'y1': 605,
+            'y1': 300,
             'line': {
                 'color': 'rgb(55, 128, 191)',
                 'width': 3,
@@ -110,16 +110,19 @@ def updatePlot(filename, lastLineNumRead, s):
     with open(filename, 'r') as f:
         for line in f:
             if(line != 'NULL\n'):
-                if(curLine >= lastLineNumRead):
+               if(curLine >= lastLineNumRead):
                     line = line.strip('\n')
                     fields = line.split(',')
                     if(lastTime != -1):
+                        print("Going to sleep for " + str(int(fields[0]) - lastTime) + " secs")
                         time.sleep(int(fields[0]) - lastTime)
 
-                    s.write(dict(x=int(fields[1]),y=int(fields[2])))
+                    print("Writing data")
+                    s.write(dict(x=float(fields[1]),y=float(fields[2])))
+                    print("wrote data")
                     lastTime = int(fields[0])
 
-                curLine += 1
+            curLine += 1
     f.close()
     return curLine
 
